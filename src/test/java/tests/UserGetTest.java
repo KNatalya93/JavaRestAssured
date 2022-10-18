@@ -1,7 +1,5 @@
 package tests;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -22,6 +20,8 @@ class UserGetTest extends BaseTestCase {
     @Test
     @DisplayName("Test get user details for not authorized user")
     @Description("Test get only username for not authorized user")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink(value = "EX-16")
     public void testGetUserDataNotAuth() {
         Response responseUserData = RestAssured
                 .get("https://playground.learnqa.ru/api/user/2")
@@ -35,6 +35,8 @@ class UserGetTest extends BaseTestCase {
     @Test
     @DisplayName("Test get user details as same user")
     @Description("Test get all fields for same user")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink(value = "EX-16")
     public void testGetUserDataAuthAsSomeUser() {
         Map<String, String> authData = new HashMap<>();
         authData.put("email", "vinkotov@example.com");

@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
 import lib.Assertions;
@@ -25,6 +23,8 @@ class UserRegisterTest extends BaseTestCase {
     @Test
     @DisplayName("Test user register with invalid email")
     @Description("Test user register is failed with invalid email")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink(value = "EX-15")
     void testCreateUserWithIncorrectEmail() {
         String email = "example.test.com";
         Map<String, String> userData = new HashMap<>();
@@ -44,6 +44,8 @@ class UserRegisterTest extends BaseTestCase {
     @ValueSource(strings = {"username", "email", "password", "firstName", "lastName"})
     @DisplayName("Test user register without fields")
     @Description("Test user register is failed without any of required fields")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink(value = "EX-15")
     void testCreateUserWithoutOneOfParameters(String condition) {
         Map<String, String> userData = new HashMap<>();
         userData = DataGenerator.getRegistrationData(userData);
@@ -71,6 +73,8 @@ class UserRegisterTest extends BaseTestCase {
             "1, The value of \'username\' field is too short",
             "256, The value of \'username\' field is too long",
     })
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink(value = "EX-15")
     public void testRegisterUserWithInvalidName(int length, String expectedAnswer) {
         String invalidUsername = DataGenerator.GetRandomName(length);
 

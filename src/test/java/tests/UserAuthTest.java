@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -46,6 +44,8 @@ public class UserAuthTest extends BaseTestCase {
     @Test
     @DisplayName("Test successfully auth user")
     @Description("Test successfully auth user by email and password")
+    @Severity(SeverityLevel.BLOCKER)
+    @TmsLink(value = "EX-14")
     public void testAuthUser(){
         Response responseChechAuth = RestAssured
                 .given()
@@ -61,6 +61,8 @@ public class UserAuthTest extends BaseTestCase {
     @ValueSource(strings = {"cookie", "headers"})
     @DisplayName("Test auth user negative")
     @Description("Test auth user without token and cookie")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink(value = "EX-14")
     public void testNegativeAuthUser(String condition){
 
         RequestSpecification spec = RestAssured.given();

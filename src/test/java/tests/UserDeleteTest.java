@@ -1,7 +1,5 @@
 package tests;
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import lib.Assertions;
@@ -22,6 +20,8 @@ class UserDeleteTest extends BaseTestCase {
     @Test
     @DisplayName("Test delete user with id=2")
     @Description("Test delete is failed for user with id=2")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink(value = "EX-18")
     public void testDeleteUser() {
         Response responseGetAuth = authRequest("vinkotov@example.com", "1234");
         Response responseDelete = deleteUserRequest(
@@ -34,6 +34,8 @@ class UserDeleteTest extends BaseTestCase {
     @Test
     @DisplayName("Test delete user successfully")
     @Description("Test delete created user")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink(value = "EX-18")
     public void testDeleteCreatedUser() {
         Map<String, String> userData = DataGenerator.getRegistrationData();
         JsonPath responseCreateAuth = generateUserRequest(userData);
@@ -56,6 +58,8 @@ class UserDeleteTest extends BaseTestCase {
     @Test
     @DisplayName("Test delete another user")
     @Description("Test delete user by auth as other user")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink(value = "EX-18")
     public void testDeleteAnotherUser() {
         Map<String, String> userData = DataGenerator.getRegistrationData();
         JsonPath responseCreateAuth = generateUserRequest(userData);

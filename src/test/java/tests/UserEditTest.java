@@ -1,8 +1,6 @@
 package tests;
 
-import io.qameta.allure.Description;
-import io.qameta.allure.Epic;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import lib.Assertions;
@@ -23,6 +21,8 @@ class UserEditTest extends BaseTestCase {
     @Test
     @DisplayName("Test edit user without auth")
     @Description("Test edit user by unauthorized user")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink(value = "EX-17")
     public void testEditWithoutAuth() {
         String newName = "new name";
         Map<String, String> editData = new HashMap<>();
@@ -39,6 +39,8 @@ class UserEditTest extends BaseTestCase {
     @Test
     @DisplayName("Test edit other user")
     @Description("Test edit user by auth as other user")
+    @Severity(SeverityLevel.NORMAL)
+    @TmsLink(value = "EX-17")
     public void testEditWithAnotherUser() {
         Map<String, String> userData = DataGenerator.getRegistrationData();
         generateUserRequest(userData);
@@ -65,6 +67,8 @@ class UserEditTest extends BaseTestCase {
     @Test
     @DisplayName("Test make invalid email")
     @Description("Test make invalid user email by auth as same user")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink(value = "EX-17")
     public void testEditWithWrongEmail() {
         Map<String, String> userData = DataGenerator.getRegistrationData();
         JsonPath responseCreateAuth = generateUserRequest(userData);
@@ -92,6 +96,8 @@ class UserEditTest extends BaseTestCase {
     @Test
     @DisplayName("Test make invalid firstName")
     @Description("Test make invalid user firstName by auth as same user")
+    @Severity(SeverityLevel.MINOR)
+    @TmsLink(value = "EX-17")
     public void testEditFirstNameTooShort() {
         Map<String, String> userData = DataGenerator.getRegistrationData();
         JsonPath responseCreateAuth = generateUserRequest(userData);
